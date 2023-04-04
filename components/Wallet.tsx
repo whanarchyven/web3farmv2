@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useListen } from "../hooks/useListen";
 import { useMetamask } from "../hooks/useMetamask";
 import { Loading } from "./Loading";
+import {useState} from "react";
 
 export default function Wallet() {
   const {
@@ -47,7 +48,7 @@ export default function Wallet() {
       params: {
         type: "ERC20",
         options: {
-          address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          address: "0xE44fa14881b192Be661ad5ec23227B9924079f80",
           symbol: "USDC",
           decimals: 18,
           image: "https://cryptologos.cc/logos/usd-coin-usdc-logo.svg?v=023",
@@ -57,82 +58,104 @@ export default function Wallet() {
     dispatch({ type: "idle" });
   };
 
+
+  const translateAddres=(addres:string)=>{
+    let result='';
+    for(let i=0;i<10;i++){
+      result+=addres[i]
+    }
+    result+='...';
+    for(let i=addres.length-1;i>addres.length-3;i--){
+      result+=addres[i]
+    }
+    return result
+  }
+
+  const [showDrop,setShowDrop]=useState(true)
+
   return (
-    <div className="bg-truffle">
-      <div className="mx-auto max-w-2xl py-16 px-4 text-center sm:py-20 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-          <span className="block">Metamask API intro</span>
-        </h2>
-        <p className="mt-4 text-lg leading-6 text-white">
-          Follow along with the{" "}
-          <Link
-            href="https://github.com/GuiBibeau/web3-unleashed-demo"
-            target="_blank"
-          >
-            <span className="underline cursor-pointer">Repo</span>
-          </Link>{" "}
-          in order to learn how to use the Metamask API.
-        </p>
+    <div className="w-40 cursor-pointer text-xs leading-3 sm:text-lg text-center sm:mx-6 font-black text-violet h-7 flex items-center justify-center rounded-full">
 
-        {wallet && balance && (
-          <div className=" px-4 py-5 sm:px-6">
-            <div className="-ml-4 -mt-4 flex flex-wrap items-center justify-between sm:flex-nowrap">
-              <div className="ml-4 mt-4">
-                <div className="flex items-center">
-                  <div className="ml-4">
-                    <h3 className="text-lg font-medium leading-6 text-white">
-                      Address: <span>{wallet}</span>
-                    </h3>
-                    <p className="text-sm text-white">
-                      Balance:{" "}
-                      <span>
-                        {(parseInt(balance) / 1000000000000000000).toFixed(4)}{" "}
-                        ETH
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+      {/*<h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">*/}
+      {/*  <span className="block">Metamask API intro</span>*/}
+      {/*</h2>*/}
+      {/*<p className="mt-4 text-lg leading-6 text-white">*/}
+      {/*  Follow along with the{" "}*/}
+      {/*  <Link*/}
+      {/*    href="https://github.com/GuiBibeau/web3-unleashed-demo"*/}
+      {/*    target="_blank"*/}
+      {/*  >*/}
+      {/*    <span className="underline cursor-pointer">Repo</span>*/}
+      {/*  </Link>{" "}*/}
+      {/*  in order to learn how to use the Metamask API.*/}
+      {/*</p>*/}
 
-        {showConnectButton && (
+      {/*{wallet && balance && (*/}
+      {/*  <div className=" px-4 py-5 sm:px-6">*/}
+      {/*    <div className="-ml-4 -mt-4 flex flex-wrap items-center justify-between sm:flex-nowrap">*/}
+      {/*      <div className="ml-4 mt-4">*/}
+      {/*        <div className="flex items-center">*/}
+      {/*          <div className="ml-4">*/}
+      {/*            <h3 className="text-lg font-medium leading-6 text-white">*/}
+      {/*              Address: <span>{wallet}</span>*/}
+      {/*            </h3>*/}
+      {/*            <p className="text-sm text-white">*/}
+      {/*              Balance:{" "}*/}
+      {/*              <span>*/}
+      {/*                {(parseInt(balance) / 1000000000000000000).toFixed(4)}{" "}*/}
+      {/*                ETH*/}
+      {/*              </span>*/}
+      {/*            </p>*/}
+      {/*          </div>*/}
+      {/*        </div>*/}
+      {/*      </div>*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+      {/*)}*/}
+
+
+      {showConnectButton && (
           <button
-            onClick={handleConnect}
-            className="mt-8 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-ganache text-white px-5 py-3 text-base font-medium  sm:w-auto"
+              onClick={handleConnect}
+              className="w-full relative items-center border-2 rounded-full w-full h-full bg-blue border-blue justify-center text-violet text-sm font-medium"
           >
             {status === "loading" ? <Loading /> : "Connect Wallet"}
           </button>
-        )}
+      )}
 
-        {showInstallMetamask && (
-          <Link
-            href="https://metamask.io/"
-            target="_blank"
-            className="mt-8 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-ganache text-white px-5 py-3 text-base font-medium  sm:w-auto"
-          >
-            Install Metamask
-          </Link>
-        )}
+      {/*{showInstallMetamask && (*/}
+      {/*  <Link*/}
+      {/*    href="https://metamask.io/"*/}
+      {/*    target="_blank"*/}
+      {/*    className="mt-8 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-ganache text-white px-5 py-3 text-base font-medium  sm:w-auto"*/}
+      {/*  >*/}
+      {/*    Install Metamask*/}
+      {/*  </Link>*/}
+      {/*)}*/}
 
-        {isConnected && (
-          <div className="flex  w-full justify-center space-x-2">
+      {isConnected&&balance && (
+          <div className="flex relative w-full justify-center space-x-2">
             <button
-              onClick={handleAddUsdc}
-              className="mt-8 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-ganache text-white px-5 py-3 text-base font-medium  sm:w-auto"
+                onClick={()=>{setShowDrop(!showDrop)}}
+                className="inline-flex w-full items-center justify-center border-2 border-white text-blue rounded-full h-full text-white px-2 text-base font-medium  sm:w-auto"
             >
-              {status === "loading" ? <Loading /> : "Add Token"}
-            </button>
-            <button
-              onClick={handleDisconnect}
-              className="mt-8 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-ganache text-white px-5 py-3 text-base font-medium  sm:w-auto"
-            >
-              Disconnect
+              {wallet?translateAddres(wallet):'Disconnect'}
+              {showDrop?<div className={'w-full rounded-xl absolute top-8 border-2 border-white flex justify-center flex-col h-20 bg-blue'}>
+                <p className="text-xs mt-2 text-violet">
+                  Balance:{" "}
+                  <span>
+                      {(parseInt(balance) / 1000000000000000000).toFixed(4)}{" "}
+                    BNB
+                    </span>
+                </p>
+                <p className="text-xl mt-2 underline font-black text-violet" onClick={()=>{handleDisconnect()}}>
+                  Disconnect
+                </p>
+              </div>:null}
             </button>
           </div>
-        )}
-      </div>
+      )}
+
     </div>
   );
 }

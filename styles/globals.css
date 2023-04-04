@@ -1,30 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+@import "public/fonts/Pluto/stylesheet.css";
+.bannerText{
+  color: #58FFE1;
+  text-shadow:
+          -0   -1px 0   #A64AC9,
+          0   -1px 0   #A64AC9,
+          -0    1px 0   #A64AC9,
+          0    1px 0   #A64AC9,
+          -1px -0   0   #A64AC9,
+          1px -0   0   #A64AC9,
+          -1px  0   0   #A64AC9,
+          1px  0   0   #A64AC9,
+          -1px -1px 0   #A64AC9,
+          1px -1px 0   #A64AC9,
+          -1px  1px 0   #A64AC9,
+          1px  1px 0   #A64AC9,
+          -1px -1px 0   #A64AC9,
+          1px -1px 0   #A64AC9,
+          -1px  1px 0   #A64AC9,
+          1px  1px 0   #A64AC9,
+          -2px -1px 0   #A64AC9,
+          2px -1px 0   #A64AC9,
+          -2px  1px 0   #A64AC9,
+          2px  1px 0   #A64AC9,
+          -1px -2px 0   #A64AC9,
+          1px -2px 0   #A64AC9,
+          -1px  2px 0   #A64AC9,
+          1px  2px 0   #A64AC9,
+          -3px -1px 0   #A64AC9,
+          3px -1px 0   #A64AC9,
+          -3px  1px 0   #A64AC9,
+          3px  1px 0   #A64AC9,
+          -1px -3px 0   #A64AC9,
+          1px -3px 0   #A64AC9,
+          -1px  3px 0   #A64AC9,
+          1px  3px 0   #A64AC9,
+          -1px -1px 0   #A64AC9,
+          1px -1px 0   #A64AC9,
+          -1px  1px 0   #A64AC9,
+          1px  1px 0   #A64AC9,
+          -1px -1px 0   #A64AC9,
+          1px -1px 0   #A64AC9,
+          -1px  1px 0   #A64AC9,
+          1px  1px 0   #A64AC9;
 }
